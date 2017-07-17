@@ -19,7 +19,6 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseLi
     private static final String TAG = "BaseListFragment";
 
     private FragmentListBinding binding;
-    private LinearLayoutManager layoutManager;
 
     public BaseListFragment(){}
 
@@ -32,8 +31,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseLi
     }
 
     protected void onSetupList(RecyclerView list) {
-        layoutManager = provideLayoutManager();
-        list.setLayoutManager(layoutManager);
+        list.setLayoutManager(provideLayoutManager());
         list.setAdapter(provideListAdapter());
     }
 
@@ -45,13 +43,15 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseLi
 
     @Override
     public void showListProgress(final boolean show) {
-
+        binding.listProgress.setVisibility(show ? View.VISIBLE : View.GONE);
+        binding.tvEmptyText.setVisibility(View.GONE);
     }
 
     @Override
     public void setEmptyText(String text) {
         binding.tvEmptyText.setVisibility(binding.list.getAdapter() == null || binding.list.getAdapter().getItemCount() == getDeltaItemCount() ? View.VISIBLE : View.GONE);
         binding.tvEmptyText.setText(text != null ? text : getString(R.string.empty_list));
+
     }
 
     protected int getDeltaItemCount() {

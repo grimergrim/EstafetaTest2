@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">EstafetaTest2</string>
     <string name="empty_list">Нет результата</string>
+    <string name="search_title">Поиск</string>
 </resources>

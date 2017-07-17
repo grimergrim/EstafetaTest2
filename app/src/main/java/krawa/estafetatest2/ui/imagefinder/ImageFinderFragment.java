@@ -1,9 +1,16 @@
 package krawa.estafetatest2.ui.imagefinder;
 
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
+import krawa.estafetatest2.R;
 import krawa.estafetatest2.model.Image;
 import krawa.estafetatest2.ui.base.BaseListFragment;
 import krawa.estafetatest2.ui.base.BaseListFragmentPresenter;
@@ -26,5 +33,28 @@ public class ImageFinderFragment extends BaseListFragment<Image> implements Imag
     protected RecyclerView.Adapter provideListAdapter() {
         adapter = new ImageFinderAdapter(presenter);
         return adapter;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.finder_menu, menu);
+        final MenuItem menuItem = menu.findItem( R.id.action_search);
+        final SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.d(TAG, "onCreateOptionsMenu query=" + query);
+                if(!searchView.isIconified()) {
+                    searchView.setIconified(true);
+                }
+                MenuItemCompat.collapseActionView(menuItem);
+                presenter.onQueryTextSubmit(query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
     }
 }
