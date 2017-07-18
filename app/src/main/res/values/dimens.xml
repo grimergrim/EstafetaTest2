@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="image_item_height">225dp</dimen>
+    <dimen name="item_divider_height">8dp</dimen>
+
+</resources>

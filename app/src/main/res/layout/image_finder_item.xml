@@ -6,11 +6,11 @@
         <variable name="presenter" type="krawa.estafetatest2.ui.imagefinder.ImageFinderPresenter"/>
     </data>
 
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:orientation="horizontal">
-
-    </LinearLayout>
+        android:layout_height="@dimen/image_item_height"
+        android:orientation="horizontal"
+        android:src="@{item.link}">
+    </ImageView>
 
 </layout>

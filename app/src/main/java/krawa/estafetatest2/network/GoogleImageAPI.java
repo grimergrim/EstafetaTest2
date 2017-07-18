@@ -9,6 +9,9 @@ public interface GoogleImageAPI {
 
     String BASE_URL = "https://www.googleapis.com/";
 
+    String API_KEY = "AIzaSyDVPbRBWedBEvdC6JCJus1Dh2cMjKDXCag";
+    String CX = "017472782470170755904:jgjdqxsbfl4";
+
     @GET("customsearch/v1")
     Call<SearchResult> searchImages (@Query("q") String query,
                                      @Query("cx") String cx,
