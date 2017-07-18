@@ -3,6 +3,7 @@ package krawa.estafetatest2.di.component;
 import dagger.Component;
 import krawa.estafetatest2.App;
 import krawa.estafetatest2.data.DataController;
+import krawa.estafetatest2.data.Database;
 import krawa.estafetatest2.data.NetworkDataSource;
 import krawa.estafetatest2.di.module.AppModule;
 import krawa.estafetatest2.di.module.DataModule;
@@ -28,4 +29,6 @@ public interface AppComponent {
 
     void inject(DataController dataController);
     void inject(NetworkDataSource networkDataSource);
+
+    void inject(Database database);
 }

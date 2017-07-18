@@ -1,6 +1,8 @@
 package krawa.estafetatest2.model;
 
-public class Image {
+import io.realm.RealmObject;
+
+public class Image extends RealmObject {
 
     private String link;
     private String path;
@@ -13,24 +15,24 @@ public class Image {
         return link;
     }
 
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public String getMime() {
         return mime;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Image image = (Image) o;
-
-        return link != null ? link.equals(image.link) : image.link == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        return link != null ? link.hashCode() : 0;
+    public void setMime(String mime) {
+        this.mime = mime;
     }
 
     public double getLat() {
@@ -49,19 +51,27 @@ public class Image {
         this.lon = lon;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
+    public String getDateTime() {
+        return dateTime;
     }
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Image image = (Image) o;
+
+        return link != null ? link.equals(image.link) : image.link == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return link != null ? link.hashCode() : 0;
     }
 }
