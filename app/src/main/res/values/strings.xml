@@ -4,4 +4,8 @@
     <string name="search_title">Поиск</string>
     <string name="server_error">Ошибка сервера</string>
     <string name="connect_error">Ошибка подключения</string>
+    <string name="need_permiss_message">Для работы приложения необходимо предоставить разрешения на определение местоположения и доступ к карте памяти.</string>
+    <string name="accept">Разрешить</string>
+    <string name="exit">Выйти</string>
+    <string name="need_gps_message">Для работы приложения необходимо разрешить определение местоположения.</string>
 </resources>

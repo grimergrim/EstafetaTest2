@@ -10,6 +10,7 @@ import krawa.estafetatest2.di.module.NetModule;
 import krawa.estafetatest2.di.module.UtilsModule;
 import krawa.estafetatest2.di.scope.PerApplication;
 import krawa.estafetatest2.ui.imagefinder.ImageFinderPresenter;
+import krawa.estafetatest2.ui.main.MainActivity;
 
 @Component(modules = {AppModule.class,
         DataModule.class,
@@ -20,6 +21,8 @@ import krawa.estafetatest2.ui.imagefinder.ImageFinderPresenter;
 public interface AppComponent {
 
     void inject(App app);
+
+    void inject(MainActivity mainActivity);
 
     void inject(ImageFinderPresenter imageFinderPresenter);
 
