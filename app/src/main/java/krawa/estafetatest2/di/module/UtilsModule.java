@@ -8,6 +8,7 @@ import com.squareup.picasso.Picasso;
 import dagger.Module;
 import dagger.Provides;
 import krawa.estafetatest2.di.scope.PerApplication;
+import krawa.estafetatest2.utils.ImageUtils;
 import krawa.estafetatest2.utils.LocationUtils;
 import krawa.estafetatest2.utils.StringUtils;
 import okhttp3.OkHttpClient;
@@ -19,6 +20,12 @@ public class UtilsModule {
     @PerApplication
     public LocationUtils provideLocationUtils(Context context) {
         return new LocationUtils(context);
+    }
+
+    @Provides
+    @PerApplication
+    public ImageUtils provideImageUtils(Context context) {
+        return new ImageUtils(context);
     }
 
     @Provides

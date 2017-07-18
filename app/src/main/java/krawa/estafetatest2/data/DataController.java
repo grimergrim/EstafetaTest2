@@ -1,7 +1,6 @@
 package krawa.estafetatest2.data;
 
 import android.location.Location;
-import android.util.Log;
 
 import java.util.List;
 
@@ -10,6 +9,7 @@ import javax.inject.Inject;
 import krawa.estafetatest2.App;
 import krawa.estafetatest2.model.Image;
 import krawa.estafetatest2.model.SearchResult;
+import krawa.estafetatest2.utils.ImageUtils;
 import krawa.estafetatest2.utils.LocationUtils;
 
 public class DataController implements DataSource{
@@ -19,7 +19,11 @@ public class DataController implements DataSource{
     @Inject
     NetworkDataSource networkDataSource;
     @Inject
+    Database database;
+    @Inject
     LocationUtils locationUtils;
+    @Inject
+    ImageUtils imageUtils;
 
     public DataController(){
         App.getAppComponent().inject(this);
@@ -42,18 +46,29 @@ public class DataController implements DataSource{
     }
 
     private void getLocationAndSaveImages(final List<Image> items) {
-        Log.d(TAG, "getLocationAndSaveImages");
         locationUtils.getCurrentLocation(new LocationUtils.OnCurrentLocationCallback() {
             @Override
             public void onCurrentLocationResult(Location location) {
-                Log.d(TAG, "getLocationAndSaveImages location="+location);
-                saveImages(items, location);
+                if(location != null){
+                    for (Image item : items) {
+                        item.setLat(location.getLatitude());
+                        item.setLon(location.getLongitude());
+                    }
+                }
+                saveImages(items);
             }
         });
     }
 
-    private void saveImages(List<Image> images, Location location) {
-
+    private void saveImages(List<Image> images) {
+        imageUtils.saveImages(images, new ImageUtils.OnImageSaveCallback() {
+            @Override
+            public void onImageSaveResult(List<Image> images) {
+                if(images != null) {
+                    database.saveImages(images);
+                }
+            }
+        });
     }
 
 }

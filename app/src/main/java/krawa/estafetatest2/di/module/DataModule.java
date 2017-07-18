@@ -3,6 +3,7 @@ package krawa.estafetatest2.di.module;
 import dagger.Module;
 import dagger.Provides;
 import krawa.estafetatest2.data.DataController;
+import krawa.estafetatest2.data.Database;
 import krawa.estafetatest2.data.NetworkDataSource;
 import krawa.estafetatest2.di.scope.PerApplication;
 
@@ -21,5 +22,9 @@ public class DataModule {
         return new NetworkDataSource();
     }
 
-
+    @Provides
+    @PerApplication
+    public Database provideDatabase() {
+        return new Database();
+    }
 }
